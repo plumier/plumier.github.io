@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Validation · Plumier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Plumier provided decorator based Validator powered by &lt;a href=&quot;https://github.com/chriso/validator.js&quot;&gt;Validator&lt;/a&gt; which has comprehensive list of validation logic.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Validation · Plumier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://your-docusaurus-test-site.com/index.html"/><meta property="og:description" content="&lt;p&gt;Plumier provided decorator based Validator powered by &lt;a href=&quot;https://github.com/chriso/validator.js&quot;&gt;Validator&lt;/a&gt; which has comprehensive list of validation logic.&lt;/p&gt;
+"/><meta property="og:image" content="https://your-docusaurus-test-site.com/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://your-docusaurus-test-site.com/img/docusaurus.png"/><link rel="shortcut icon" href="/img/plumier.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/plumier.svg" alt="Plumier"/><h2 class="headerTitleWithLogo">Plumier</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/overview" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>References</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Fundamentals<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/entry-point">Application Startup</a></li><li class="navListItem"><a class="navItem" href="/docs/controller">Controller</a></li><li class="navListItem"><a class="navItem" href="/docs/middleware">Middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/facility">Facility</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">References<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/refs/route">Route Cheat Sheet</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/parameter-binding">Parameter Binding</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/refs/validation">Validation</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/converters">Converters</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/authorization">Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/serve-static">Serve Static Files</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/file-upload">File Upload</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/mongoose-helper">Mongoose Helper</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/static-analysis">Static Analysis</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/testing-tips">Testing Tips</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/extends/custom-parameter-binding">Custom Parameter Binding</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-converter">Custom Converter</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-validator">Custom Validator</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Validation</h1></header><article><div><span><p>Plumier provided decorator based Validator powered by <a href="https://github.com/chriso/validator.js">Validator</a> which has comprehensive list of validation logic.</p>
+<p>Validation handled internally by plumier (but possible to provided your own validation logic). By default if invalid value found Plumier will skip controller execution and throw <code>ValidationError</code>, if the <code>ValidationError</code> not handled it will automatically return http status 422 with an informative message.</p>
+<h2><a class="anchor" aria-hidden="true" id="validate-query"></a><a href="#validate-query" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validate Query</h2>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get()
+    getAnimal(
+        <span class="hljs-meta">@val</span>.mongoid()
+        id:<span class="hljs-built_in">string</span>){}
+}
+</code></pre>
+<p>Above code will make sure the <code>id</code> parameter exists and a valid MongodDB id.</p>
+<h2><a class="anchor" aria-hidden="true" id="validate-request-body"></a><a href="#validate-request-body" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Validate Request Body</h2>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalDto {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-meta">@val</span>.alpha()
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>
+
+        <span class="hljs-comment">//make sure birthday is not in the future</span>
+        <span class="hljs-comment">//https://github.com/chriso/validator.js/blob/master/README.md</span>
+        <span class="hljs-meta">@val</span>.before()
+        <span class="hljs-keyword">public</span> birthday:<span class="hljs-built_in">Date</span>
+    </span>){}
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    saveAnimal(model:AnimalDto){}
+}
+</code></pre>
+<p>Above code will make sure:</p>
+<ul>
+<li>Animal name is exists and only contains alpha string</li>
+<li>Animal birthday is optional and should not in the future</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="optional-validation"></a><a href="#optional-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional Validation</h2>
+<p>By default all property treated as required follow the TypeScript strict null check except it declarated with <code>?</code> or <code>| undefined</code>. To do that Plumier provided <code>@val.optional()</code> validation to skip check for required property.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalDto {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-meta">@val</span>.alpha()
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>
+        <span class="hljs-meta">@val</span>.before()
+        <span class="hljs-meta">@val</span>.optional()
+        <span class="hljs-keyword">public</span> birthday?:<span class="hljs-built_in">Date</span>
+    </span>){}
+}
+</code></pre>
+<p>Code above showing birthday property decorated with <code>@val.optional()</code> decorator, means its value can be undefined or null.</p>
+<blockquote>
+<p>It is best practice to make the birthday property optional type <code>?</code> or <code>|undefined</code> if you enable <code>strict</code> compiler option, so the possibility of null/undefined value can be detected by the compiler.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="partial-validation"></a><a href="#partial-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Partial Validation</h2>
+<p>In some case you want all properties of your domain optional by default by providing <code>Partial&lt;Type&gt;</code>. The problem of using <code>Partial&lt;Type&gt;</code> is the design type emit it into <code>Object</code> so we unable to inspect the properties of the type.</p>
+<p>Plumier provided <code>@val.partial(&lt;Type&gt;)</code> to do that, so system can inspect the properties properly.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalDto {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-meta">@val</span>.alpha()
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>
+        <span class="hljs-meta">@val</span>.before()
+        <span class="hljs-meta">@val</span>.optional()
+        <span class="hljs-keyword">public</span> birthday?:<span class="hljs-built_in">Date</span>
+    </span>){}
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.put(<span class="hljs-string">":id"</span>)
+    modify(id:<span class="hljs-built_in">string</span>, <span class="hljs-meta">@val</span>.partial(AnimalDto) data:Partial&lt;AnimalDto&gt;) {}
+}
+</code></pre>
+<p>Using configuration above you can pass <code>{ &quot;birthday&quot;: &quot;2015-1-1&quot; }</code> (without name) to the modify action without getting 422 error.</p>
+<h2><a class="anchor" aria-hidden="true" id="custom-error-message"></a><a href="#custom-error-message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Error Message</h2>
+<p>You can provide <code>message</code> parameter on each validator decorator like below:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@val</span>.after({message: <span class="hljs-string">"Specified date must be in the future"</span>})
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="custom-http-status"></a><a href="#custom-http-status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Http Status</h2>
+<p>By default Plumier will return http status 422 for some invalid values. You can override this behavior by provide a middleware and catch the <code>ValidationError</code> thrown by Plumier</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Plumier()
+app.set(<span class="hljs-keyword">new</span> WebApiFacility())
+app.use({execute: <span class="hljs-keyword">async</span> x =&gt; {
+    <span class="hljs-keyword">try</span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> x.proceed()
+    }
+    <span class="hljs-keyword">catch</span>(e){
+        <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> ValidationError){
+            <span class="hljs-comment">//e.issues contains information of validation:</span>
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> HttpStatusError(<span class="hljs-number">500</span>, <span class="hljs-string">"&lt;Your custom message&gt;"</span>)
+        }
+        <span class="hljs-keyword">else</span> 
+            <span class="hljs-keyword">throw</span> e
+    }
+}})
+
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/refs/parameter-binding"><span class="arrow-prev">← </span><span>Parameter Binding</span></a><a class="docs-next button" href="/docs/refs/converters"><span>Converters</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#validate-query">Validate Query</a></li><li><a href="#validate-request-body">Validate Request Body</a></li><li><a href="#optional-validation">Optional Validation</a></li><li><a href="#partial-validation">Partial Validation</a></li><li><a href="#custom-error-message">Custom Error Message</a></li><li><a href="#custom-http-status">Custom Http Status</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div></body></html>

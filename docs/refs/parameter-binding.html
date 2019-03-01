@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Parameter Binding · Plumier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Parameter binding is a process on passing request part (context/query/body) into action parameters. Plumier provided 3 kind of parameter binding: Decorator Binding, Name Binding, Model Binding.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Parameter Binding · Plumier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://your-docusaurus-test-site.com/index.html"/><meta property="og:description" content="&lt;p&gt;Parameter binding is a process on passing request part (context/query/body) into action parameters. Plumier provided 3 kind of parameter binding: Decorator Binding, Name Binding, Model Binding.&lt;/p&gt;
+"/><meta property="og:image" content="https://your-docusaurus-test-site.com/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://your-docusaurus-test-site.com/img/docusaurus.png"/><link rel="shortcut icon" href="/img/plumier.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/plumier.svg" alt="Plumier"/><h2 class="headerTitleWithLogo">Plumier</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/overview" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>References</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Fundamentals<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/entry-point">Application Startup</a></li><li class="navListItem"><a class="navItem" href="/docs/controller">Controller</a></li><li class="navListItem"><a class="navItem" href="/docs/middleware">Middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/facility">Facility</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">References<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/refs/route">Route Cheat Sheet</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/refs/parameter-binding">Parameter Binding</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/validation">Validation</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/converters">Converters</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/authorization">Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/serve-static">Serve Static Files</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/file-upload">File Upload</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/mongoose-helper">Mongoose Helper</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/static-analysis">Static Analysis</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/testing-tips">Testing Tips</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/extends/custom-parameter-binding">Custom Parameter Binding</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-converter">Custom Converter</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-validator">Custom Validator</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Parameter Binding</h1></header><article><div><span><p>Parameter binding is a process on passing request part (context/query/body) into action parameters. Plumier provided 3 kind of parameter binding: Decorator Binding, Name Binding, Model Binding.</p>
+<ul>
+<li>Decorator binding: Bind specific koa context into action parameter by using <code>@bind</code> decorator.</li>
+<li>Name binding: Bind query or request body part into action parameter based on parameter name.</li>
+<li>Model binding: Bind request body into parameter which is of type custom class and doesn't match above criteria (decorator binding, name binding)</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="decorator-binding"></a><a href="#decorator-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Decorator Binding</h2>
+<p>Bind action parameter using <code>@bind</code> decorator, there are 5 types of decorator bindings.</p>
+<h3><a class="anchor" aria-hidden="true" id="ctx-binding"></a><a href="#ctx-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ctx Binding</h3>
+<p>Bind Koa context to action's parameter</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.ctx() model:Koa.Context){
+
+    }
+}
+</code></pre>
+<p>Part of context can be issued by providing path</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.ctx(<span class="hljs-string">"request.body"</span>) model:<span class="hljs-built_in">any</span>){
+
+    }
+}
+</code></pre>
+<p>Above code will be the same as access <code>ctx.request.body</code>.</p>
+<p>Allowed path example:</p>
+<ul>
+<li>Using dot to access child property <code>request.ip</code> etc</li>
+<li>Using array notation <code>request.body[0]</code></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="request-binding"></a><a href="#request-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Request Binding</h3>
+<p>Bind request to action's parameter</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.request() model:Koa.Request){
+
+    }
+}
+</code></pre>
+<p>part of request can be issued by providing path parameter</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.request(<span class="hljs-string">"ip"</span>) ip:<span class="hljs-built_in">string</span>){
+
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="request-body-binding"></a><a href="#request-body-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Request Body Binding</h3>
+<p>Bind request body to action's parameter, this feature is the same with model binding but you can specify which property of the body will be bound to the parameter</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.body() model:<span class="hljs-built_in">any</span>){
+
+    }
+}
+</code></pre>
+<p>You can specify model type to get correct conversion of the model's properties</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.body() model:AnimalDto){
+
+    }
+}
+</code></pre>
+<p>You can bind part of the body by specify the parameter</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.body(<span class="hljs-string">"id"</span>) id:<span class="hljs-built_in">number</span>){
+
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="query-binding"></a><a href="#query-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Query Binding</h3>
+<p>Bind query to action's parameter</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.query() model:<span class="hljs-built_in">any</span>){
+
+    }
+}
+</code></pre>
+<p>You can specify the model to get correct conversion</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalDto {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">public</span> id:<span class="hljs-built_in">number</span>,
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> birthday:<span class="hljs-built_in">Date</span>,
+        <span class="hljs-keyword">public</span> deceased:<span class="hljs-built_in">boolean</span>
+    </span>){}
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get()
+    save(<span class="hljs-meta">@bind</span>.query() model:AnimalDto){
+
+    }
+}
+</code></pre>
+<p>And the query string will be populated to the body properly</p>
+<pre><code class="hljs">GET <span class="hljs-meta-keyword">/animal/</span>save?id=<span class="hljs-number">200</span><span class="hljs-variable">&amp;name</span>=Mimi<span class="hljs-variable">&amp;deceased</span>=ON<span class="hljs-variable">&amp;birthday</span>=<span class="hljs-number">2018</span><span class="hljs-number">-1</span><span class="hljs-number">-1</span>
+Result populated to model: 
+AnimalDto{
+<span class="hljs-symbol">    id:</span> <span class="hljs-number">200</span>,
+<span class="hljs-symbol">    name:</span> <span class="hljs-string">"Mimi"</span>,
+<span class="hljs-symbol">    deceased:</span> true,
+<span class="hljs-symbol">    birthday:</span> Date <span class="hljs-comment">//equals to new Date(2018,1,1)</span>
+}
+</code></pre>
+<p>It can be combined with the model binding to get bound request body and query</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-meta">@bind</span>.query() page: PagingDto, model: AnimalDto) {
+        <span class="hljs-keyword">return</span> { page, model }
+    }
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="login-user-binding"></a><a href="#login-user-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Login User Binding</h3>
+<p>Bind login user to action's parameter. This functionalities require <code>JwtAuthFacility</code> see how to setup user authorization <a href="./authorization">here</a></p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get()
+    save(<span class="hljs-meta">@bind</span>.user() user:User){
+
+    }
+}
+</code></pre>
+<p><code>User</code> type is type of claim that you specify when you sign the access token.</p>
+<h3><a class="anchor" aria-hidden="true" id="file-parser-binding"></a><a href="#file-parser-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>File Parser Binding</h3>
+<p>Bind multi part file parser into action parameter, see more detail on <a href="file-upload#Bind-File-Parser">File Upload Section</a></p>
+<h2><a class="anchor" aria-hidden="true" id="name-binding"></a><a href="#name-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Name Binding</h2>
+<p>Action parameter automatically assigned with query parameter or part of body request based on its name. For example:</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /animal/get?<span class="hljs-attribute">type</span>=canine&amp;page=1
+</code></pre>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get()
+    <span class="hljs-keyword">get</span>(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, page:<span class="hljs-built_in">number</span>){}
+}
+</code></pre>
+<p><code>type</code> and <code>page</code> parameter above automatically assigned with <code>canine</code> and <code>1</code>.</p>
+<pre><code class="hljs">POST <span class="hljs-meta-keyword">/auth/</span>login
+<span class="hljs-symbol">body:</span>
+{
+<span class="hljs-symbol">    username:</span> <span class="hljs-string">"admin"</span>,
+<span class="hljs-symbol">    password:</span> <span class="hljs-string">"super secret pwd"</span>
+}
+</code></pre>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> AuthController {
+    <span class="hljs-meta">@route</span>.post()
+    login(username:<span class="hljs-built_in">string</span>, password:<span class="hljs-built_in">string</span>){}
+}
+</code></pre>
+<p><code>username</code> and <code>password</code> will automatically assigned with part of request body <code>admin</code> and <code>super secret pwd</code>.</p>
+<p>More complex example:</p>
+<pre><code class="hljs">POST <span class="hljs-meta-keyword">/animal/</span>save?type=canine
+<span class="hljs-symbol">body:</span> 
+{ 
+<span class="hljs-symbol">    name:</span> <span class="hljs-string">"Mimi"</span>, 
+<span class="hljs-symbol">    birthDate:</span> <span class="hljs-string">"2018-1-1"</span>, 
+<span class="hljs-symbol">    owner:</span> { firstName: <span class="hljs-string">"John"</span>, lastName: <span class="hljs-string">"Doe"</span> }
+}
+</code></pre>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
+<span class="hljs-keyword">class</span> Human {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        firstName:<span class="hljs-built_in">string</span>,
+        lastName:<span class="hljs-built_in">string</span>
+    </span>){}
+}
+
+<span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, name:<span class="hljs-built_in">string</span>, birthDate:<span class="hljs-built_in">Date</span>, owner:Human){}
+}
+</code></pre>
+<p>Example above showing that <code>type</code> parameter assigned with the query string <code>canine</code> and the request body spread into 3 parameters <code>name</code>, <code>birthDate</code> and <code>owner</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="model-binding"></a><a href="#model-binding" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Model Binding</h2>
+<p>Model binding is the default behavior of parameter binding. Plumier by default will assigned request body to any parameter that has custom class type and doesn't match any binding criteria (Name Binding/Decorator binding).</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
+<span class="hljs-keyword">class</span> Animal{
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> birthDate:<span class="hljs-built_in">Date</span>,
+        <span class="hljs-keyword">public</span> owner:Human
+    </span>)
+}
+
+class AnimalController {
+    <span class="hljs-meta">@route</span>.post()
+    save(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, animal:Animal){}
+}
+</code></pre>
+<p>Request</p>
+<pre><code class="hljs">POST <span class="hljs-meta-keyword">/animal/</span>save?type=canine
+<span class="hljs-symbol">body:</span> 
+{ 
+<span class="hljs-symbol">    name:</span> <span class="hljs-string">"Mimi"</span>, 
+<span class="hljs-symbol">    birthDate:</span> <span class="hljs-string">"2018-1-1"</span>, 
+<span class="hljs-symbol">    owner:</span> { firstName: <span class="hljs-string">"John"</span>, lastName: <span class="hljs-string">"Doe"</span> }
+}
+</code></pre>
+<p>Above code, the <code>animal</code> parameter in <code>save</code> action will automatically bound with request body.</p>
+<h2><a class="anchor" aria-hidden="true" id="behavior"></a><a href="#behavior" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Behavior</h2>
+<p>In order to properly bound the request, plumier use priority based on parameter binding kind above.</p>
+<ul>
+<li>Decorator binding is be the first priority</li>
+<li>Name binding is the second priority</li>
+<li>Model binding is the last</li>
+</ul>
+<p>Its mean when an action parameter decorated with <code>@bind</code> decorator it will not further check for name binding nor model binding. If an action parameter doesn't decorated with <code>@bind</code> but its name match with a query parameter, it will not further check for model binding and so on.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/refs/route"><span class="arrow-prev">← </span><span>Route Cheat Sheet</span></a><a class="docs-next button" href="/docs/refs/validation"><span>Validation</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#decorator-binding">Decorator Binding</a><ul class="toc-headings"><li><a href="#ctx-binding">Ctx Binding</a></li><li><a href="#request-binding">Request Binding</a></li><li><a href="#request-body-binding">Request Body Binding</a></li><li><a href="#query-binding">Query Binding</a></li><li><a href="#login-user-binding">Login User Binding</a></li><li><a href="#file-parser-binding">File Parser Binding</a></li></ul></li><li><a href="#name-binding">Name Binding</a></li><li><a href="#model-binding">Model Binding</a></li><li><a href="#behavior">Behavior</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div></body></html>

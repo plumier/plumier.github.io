@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Route Cheat Sheet · Plumier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Plumier generate routes directly from controllers. By default it will looks into the &lt;code&gt;./controller&lt;/code&gt; directory. Except other directory or controller classes specified on the configuration.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Route Cheat Sheet · Plumier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://your-docusaurus-test-site.com/index.html"/><meta property="og:description" content="&lt;p&gt;Plumier generate routes directly from controllers. By default it will looks into the &lt;code&gt;./controller&lt;/code&gt; directory. Except other directory or controller classes specified on the configuration.&lt;/p&gt;
+"/><meta property="og:image" content="https://your-docusaurus-test-site.com/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://your-docusaurus-test-site.com/img/docusaurus.png"/><link rel="shortcut icon" href="/img/plumier.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/plumier.svg" alt="Plumier"/><h2 class="headerTitleWithLogo">Plumier</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/overview" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>References</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Fundamentals<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/overview">Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/entry-point">Application Startup</a></li><li class="navListItem"><a class="navItem" href="/docs/controller">Controller</a></li><li class="navListItem"><a class="navItem" href="/docs/middleware">Middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/facility">Facility</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">References<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docs/refs/route">Route Cheat Sheet</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/parameter-binding">Parameter Binding</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/validation">Validation</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/converters">Converters</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/authorization">Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/serve-static">Serve Static Files</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/file-upload">File Upload</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/mongoose-helper">Mongoose Helper</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/static-analysis">Static Analysis</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/testing-tips">Testing Tips</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extending<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/extends/custom-parameter-binding">Custom Parameter Binding</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-converter">Custom Converter</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-validator">Custom Validator</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Route Cheat Sheet</h1></header><article><div><span><p>Plumier generate routes directly from controllers. By default it will looks into the <code>./controller</code> directory. Except other directory or controller classes specified on the configuration.</p>
+<h2><a class="anchor" aria-hidden="true" id="without-decorator"></a><a href="#without-decorator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Without Decorator</h2>
+<p>If no <code>@route</code> decorator provided, generated route will be of type GET.</p>
+<blockquote>
+<p>Parameter binding will be ignored (due to no type information if no decorator provided)
+All data type assumed to be of type string even if you provided other type</p>
+</blockquote>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">string</span>){}
+    list(last:<span class="hljs-built_in">string</span>, limit:<span class="hljs-built_in">string</span>)
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /animal/get?<span class="hljs-attribute">id</span>=&lt;number&gt;
+<span class="hljs-builtin-name">GET</span> /animal/list?<span class="hljs-attribute">last</span>=&lt;number&gt;&amp;limit=&lt;number&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="verb-route-override"></a><a href="#verb-route-override" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verb Route Override</h2>
+<p>Verb route override will only override the http verb of the route, route will be constructed using controller name (omit controller word) and action name</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.put()
+    modify(id:<span class="hljs-built_in">number</span>, model:AnimalDto)
+    <span class="hljs-meta">@route</span>.post()
+    save(model:AnimalDto){}
+}
+</code></pre>
+<pre><code class="hljs">POST <span class="hljs-meta-keyword">/animal/</span>save
+PUT  <span class="hljs-meta-keyword">/animal/</span>modify?id=<span class="hljs-params">&lt;number&gt;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="absolute-route-override"></a><a href="#absolute-route-override" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Absolute Route Override</h2>
+<p>Absolute route override (route start with <code>/</code>) will ignore all the controller and action name, instead it will used provided route.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/beast/:id"</span>)
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">number</span>){}
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/beast/list"</span>)
+    list(last:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>)
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /beast/:id
+<span class="hljs-builtin-name">GET</span> /beast/list?<span class="hljs-attribute">last</span>=&lt;number&gt;&amp;limit=&lt;number&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="relative-route-override"></a><a href="#relative-route-override" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative Route Override</h2>
+<p>Relative route override will only rename the name of the action and keep using controller name.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">":id"</span>)
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">number</span>){}
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"list"</span>)
+    list(last:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>)
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /animal/:id
+<span class="hljs-builtin-name">GET</span> /animal/list?<span class="hljs-attribute">last</span>=&lt;number&gt;&amp;limit=&lt;number&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="ignore-action-name"></a><a href="#ignore-action-name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ignore Action Name</h2>
+<p>You can provided empty string on the route parameter to ignore action name</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">""</span>)
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">number</span>){}
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /animal?<span class="hljs-attribute">id</span>=&lt;number&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="example-restful-api"></a><a href="#example-restful-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Restful Api</h2>
+<p>Sum up of above rule you can create Restful API route like below:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">":id"</span>)
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">number</span>){}
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">""</span>)
+    getAll(){}
+    <span class="hljs-meta">@route</span>.post(<span class="hljs-string">""</span>)
+    save(animal:<span class="hljs-built_in">any</span>)
+    <span class="hljs-meta">@route</span>.put(<span class="hljs-string">":id"</span>)
+    modify(id:<span class="hljs-built_in">number</span>, animal:<span class="hljs-built_in">any</span>)
+    <span class="hljs-meta">@route</span>.delete(<span class="hljs-string">":id"</span>)
+    <span class="hljs-keyword">delete</span>(id:<span class="hljs-built_in">number</span>){}
+}
+</code></pre>
+<pre><code class="hljs">GET    /<span class="hljs-keyword">animal</span>/:id
+GET    /<span class="hljs-keyword">animal</span>
+POST   /<span class="hljs-keyword">animal</span>
+PUT    /<span class="hljs-keyword">animal</span>/:id
+DELETE /<span class="hljs-keyword">animal</span>/:id
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="root-route"></a><a href="#root-route" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Root Route</h2>
+<p>Root route only override the controller name</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@route</span>.root(<span class="hljs-string">"/beast"</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">number</span>){}
+    list(last:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>)
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /beast/get?<span class="hljs-attribute">id</span>=&lt;number&gt;
+<span class="hljs-builtin-name">GET</span> /beast/list?<span class="hljs-attribute">last</span>=&lt;number&gt;&amp;limit=&lt;number&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="parameterized-root-route"></a><a href="#parameterized-root-route" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Parameterized Root Route</h2>
+<p>Root route can be parameterized and provided backing parameter on all of the action, except absolute route</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@route</span>.root(<span class="hljs-string">"/beast/:beastId"</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-keyword">get</span>(beastId:<span class="hljs-built_in">number</span>, id:<span class="hljs-built_in">number</span>){}
+    <span class="hljs-comment">//absolute route doesn't need to provided backing parameter</span>
+    <span class="hljs-comment">//fpr beastId</span>
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/list"</span>)
+    list(last:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>)
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /beast/&lt;beastId&gt;/get?<span class="hljs-attribute">id</span>=&lt;number&gt;
+<span class="hljs-builtin-name">GET</span> /list?<span class="hljs-attribute">last</span>=&lt;number&gt;&amp;limit=&lt;number&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="example-nested-restful-api"></a><a href="#example-nested-restful-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Nested Restful API</h2>
+<p>By using rules above you can configure nested restful api like below:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@route</span>.root(<span class="hljs-string">"category/:type/animal"</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">":id"</span>)
+    <span class="hljs-keyword">get</span>(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, id:<span class="hljs-built_in">number</span>){}
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">""</span>)
+    getAll(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>){}
+    <span class="hljs-meta">@route</span>.post(<span class="hljs-string">""</span>)
+    save(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, animal:<span class="hljs-built_in">any</span>)
+    <span class="hljs-meta">@route</span>.put(<span class="hljs-string">":id"</span>)
+    modify(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, id:<span class="hljs-built_in">number</span>, animal:<span class="hljs-built_in">any</span>)
+    <span class="hljs-meta">@route</span>.delete(<span class="hljs-string">":id"</span>)
+    <span class="hljs-keyword">delete</span>(<span class="hljs-keyword">type</span>:<span class="hljs-built_in">string</span>, id:<span class="hljs-built_in">number</span>){}
+}
+</code></pre>
+<pre><code class="hljs">GET    category/<span class="hljs-symbol">:type/animal/</span><span class="hljs-symbol">:id</span>
+GET    category/<span class="hljs-symbol">:type/animal</span>
+POST   category/<span class="hljs-symbol">:type/animal</span>
+PUT    category/<span class="hljs-symbol">:type/animal/</span><span class="hljs-symbol">:id</span>
+DELETE category/<span class="hljs-symbol">:type/animal/</span><span class="hljs-symbol">:id</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="multiple-route-decorator"></a><a href="#multiple-route-decorator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Multiple Route Decorator</h2>
+<p>Multiple routes can be applied to an action, this functionalities needed for example when hosting an SPA with url rewrite</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/"</span>)
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/home"</span>)
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/about-us"</span>)
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/cart"</span>)
+    index(id:<span class="hljs-built_in">number</span>){
+        <span class="hljs-keyword">return</span> response.file(<span class="hljs-string">"&lt;file path&gt;"</span>)
+    }
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /
+<span class="hljs-builtin-name">GET</span> /home
+<span class="hljs-builtin-name">GET</span> /about-us
+<span class="hljs-builtin-name">GET</span> /cart
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="route-based-on-controller-directory-hierarchy"></a><a href="#route-based-on-controller-directory-hierarchy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Route Based On Controller Directory Hierarchy</h2>
+<p>Route generated based on controller directory hierarchy. For example if the controller hierarchy like below:</p>
+<pre><code class="hljs">+ controller
+  - home-controller<span class="hljs-selector-class">.ts</span>
+  + api
+    + v1
+      - animal-controller<span class="hljs-selector-class">.ts</span>
+    + v2
+      - animal-controller<span class="hljs-selector-class">.ts</span>
+- app<span class="hljs-selector-class">.ts</span>
+</code></pre>
+<p>Application setup:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">//app.ts</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Plumier()
+<span class="hljs-comment">//setup controller directory on WebApiFacility (or RestfulApiFacility)</span>
+app.set(<span class="hljs-keyword">new</span> WebApiFacility({ controller: <span class="hljs-string">"./controller"</span> }))
+    .initialize()
+    .then(<span class="hljs-function"><span class="hljs-params">koa</span> =&gt;</span> koa.listen(<span class="hljs-number">8000</span>))
+</code></pre>
+<p>Controllers</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">//controller/home-controller.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/"</span>)
+    index(){
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"My Cool Animal API"</span>
+    }
+}
+
+<span class="hljs-comment">//controller/api/v1/animal-controller.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">""</span>)
+    <span class="hljs-keyword">get</span>(){
+        <span class="hljs-keyword">return</span> { name: <span class="hljs-string">"Mimi"</span> }
+    }
+}
+
+<span class="hljs-comment">//controller/api/v2/animal-controller.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">":id"</span>)
+    <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">string</span>){
+        <span class="hljs-keyword">return</span> { name: <span class="hljs-string">"Mimi"</span> }
+    }
+
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">""</span>)
+    all(){
+        <span class="hljs-keyword">return</span> [{ name: <span class="hljs-string">"Mimi"</span> }]
+    }
+}
+</code></pre>
+<p>Route generated:</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /
+<span class="hljs-builtin-name">GET</span> /api/v1/animal
+<span class="hljs-builtin-name">GET</span> /api/v2/animal/:id
+<span class="hljs-builtin-name">GET</span> /api/v2/animal
+</code></pre>
+<p>Note that AnimalController will have their own root route based on their directory.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/facility"><span class="arrow-prev">← </span><span>Facility</span></a><a class="docs-next button" href="/docs/refs/parameter-binding"><span>Parameter Binding</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#without-decorator">Without Decorator</a></li><li><a href="#verb-route-override">Verb Route Override</a></li><li><a href="#absolute-route-override">Absolute Route Override</a></li><li><a href="#relative-route-override">Relative Route Override</a></li><li><a href="#ignore-action-name">Ignore Action Name</a></li><li><a href="#example-restful-api">Example Restful Api</a></li><li><a href="#root-route">Root Route</a></li><li><a href="#parameterized-root-route">Parameterized Root Route</a></li><li><a href="#example-nested-restful-api">Example Nested Restful API</a></li><li><a href="#multiple-route-decorator">Multiple Route Decorator</a></li><li><a href="#route-based-on-controller-directory-hierarchy">Route Based On Controller Directory Hierarchy</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div></body></html>
