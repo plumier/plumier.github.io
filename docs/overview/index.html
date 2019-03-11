@@ -77,7 +77,7 @@ Example above showing that Controller manually registered on <code>WebApiFacilit
 <pre><code class="hljs css language-typescript"><span class="hljs-comment">// file: controller/api/v1/animal-controller.ts</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalsController {
     <span class="hljs-meta">@route</span>.get()
-    list(offset:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>=<span class="hljs-number">50</span>){
+    list(offset:<span class="hljs-built_in">number</span>, <span class="hljs-meta">@val</span>.optional() limit:<span class="hljs-built_in">number</span>=<span class="hljs-number">50</span>){
         <span class="hljs-comment">// implementation</span>
     }
 }

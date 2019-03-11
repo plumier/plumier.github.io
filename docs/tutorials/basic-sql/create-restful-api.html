@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Creating Restful API · Plumier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Plumier provided flexible routing that make creating restful route easy. In this tutorial we will create several routes that follow restful api best practice. We will keep all the routes accessible by public for now, in next tutorial we will add authentication and authorization for them.&lt;/p&gt;
-"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Creating Restful API · Plumier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://plumierjs.com/index.html"/><meta property="og:description" content="&lt;p&gt;Plumier provided flexible routing that make creating restful route easy. In this tutorial we will create several routes that follow restful api best practice. We will keep all the routes accessible by public for now, in next tutorial we will add authentication and authorization for them.&lt;/p&gt;
-"/><meta property="og:image" content="https://plumierjs.com/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://plumierjs.com/img/docusaurus.png"/><link rel="shortcut icon" href="/img/plumier.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/plumier.svg" alt="Plumier"/><h2 class="headerTitleWithLogo">Plumier</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/refs/route" target="_self">References</a></li><li class="siteNavGroupActive"><a href="/docs/tutorials/basic-sql/get-started" target="_self">Tutorials</a></li><li class=""><a href="https://github.com/plumier/plumier" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>SQL Restful API</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">SQL Restful API<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/get-started">Get Started</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/create-domain">Creating Domain Model</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/create-migration">Creating DB Migration</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/tutorials/basic-sql/create-restful-api">Creating Restful API</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/securing-restful-api">Securing Restful API</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/deployment">Deployment</a></li></ul></div></div></section></div><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Create Restful API · Plumier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Plumier provided flexible routing that make creating restful route easy. In this section we will create several routes that follow restful api best practice. We will keep all the routes accessible by public for now, in next tutorial we will add authentication and authorization for them.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Create Restful API · Plumier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://plumierjs.com/index.html"/><meta property="og:description" content="&lt;p&gt;Plumier provided flexible routing that make creating restful route easy. In this section we will create several routes that follow restful api best practice. We will keep all the routes accessible by public for now, in next tutorial we will add authentication and authorization for them.&lt;/p&gt;
+"/><meta property="og:image" content="https://plumierjs.com/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://plumierjs.com/img/docusaurus.png"/><link rel="shortcut icon" href="/img/plumier.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/plumier.svg" alt="Plumier"/><h2 class="headerTitleWithLogo">Plumier</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/refs/route" target="_self">References</a></li><li class="siteNavGroupActive"><a href="/docs/tutorials/basic-sql/get-started" target="_self">Tutorials</a></li><li class=""><a href="https://github.com/plumier/plumier" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>SQL Restful API</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">SQL Restful API<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/get-started">Get Started</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/create-domain">Create Domain Model</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/create-migration">Create DB Migration</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/tutorials/basic-sql/create-restful-api">Create Restful API</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/debugging">Debugging</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/create-custom-validation">Create Custom Validation</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/create-local-authentication">Create Local Authentication</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/securing-restful-api">Securing Restful API</a></li><li class="navListItem"><a class="navItem" href="/docs/tutorials/basic-sql/deployment">Deployment</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -50,7 +50,7 @@
                 };
               }
             });
-        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Creating Restful API</h1></header><article><div><span><p>Plumier provided flexible routing that make creating restful route easy. In this tutorial we will create several routes that follow restful api best practice. We will keep all the routes accessible by public for now, in next tutorial we will add authentication and authorization for them.</p>
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Create Restful API</h1></header><article><div><span><p>Plumier provided flexible routing that make creating restful route easy. In this section we will create several routes that follow restful api best practice. We will keep all the routes accessible by public for now, in next tutorial we will add authentication and authorization for them.</p>
 <h2><a class="anchor" aria-hidden="true" id="configure-knex"></a><a href="#configure-knex" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure Knex</h2>
 <p>Before we start creating routes we need to configure Knex.js that will manage the connections to the database. Navigate to <code>model</code> directory and add file named <code>db.ts</code> and write code below</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> knex <span class="hljs-keyword">from</span> <span class="hljs-string">"knex"</span>
@@ -75,8 +75,8 @@
     
     <span class="hljs-comment">// POST /api/v1/todos</span>
     <span class="hljs-meta">@route</span>.post(<span class="hljs-string">""</span>)
-    save(user: Todo) {
-        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"Todo"</span>).insert(user)
+    save(data: Todo) {
+        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"Todo"</span>).insert(data)
     }
 
     <span class="hljs-comment">// GET /api/v1/todos?offset=&lt;number&gt;&amp;limit=&lt;number&gt;</span>
@@ -95,8 +95,8 @@
 
     <span class="hljs-comment">// PUT /api/v1/todos/:id</span>
     <span class="hljs-meta">@route</span>.put(<span class="hljs-string">":id"</span>)
-    modify(id: <span class="hljs-built_in">number</span>, user: Todo) {
-        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"Todo"</span>).update(user).where({ id })
+    modify(id: <span class="hljs-built_in">number</span>, data: Todo) {
+        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"Todo"</span>).update(data).where({ id })
     }
 
     <span class="hljs-comment">// DELETE /api/v1/todos/:id</span>
@@ -108,7 +108,7 @@
 </code></pre>
 <p>Above controller has five methods that will handle http requests described by the comment above of each method. Each method uses Knex.js query builder to interact with database.</p>
 <blockquote>
-<p><strong>Security Note</strong>: We're not provided any security implicitly on above controller but Plumier already done some validation, type conversion and simple sanitation for malformed user input. Knex.js will help us to do some prevention against sql injection.</p>
+<p><strong>Features Note</strong>: We're not provided any security implicitly on above controller but Plumier already done some validation, type conversion and simple sanitation for malformed user input. Knex.js will help us to do some prevention against sql injection. See <a href="#testing-validation">testing validation</a> at the end of this section</p>
 </blockquote>
 <h3><a class="anchor" aria-hidden="true" id="user-controller"></a><a href="#user-controller" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>User Controller</h3>
 <p>Open the <code>users-controller.ts</code> file and type code below:</p>
@@ -118,14 +118,13 @@
 <span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/db"</span>
 <span class="hljs-keyword">import</span> { User } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/domain"</span>
 
-
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UsersController {
     
     <span class="hljs-comment">// POST /api/v1/users</span>
     <span class="hljs-meta">@route</span>.post(<span class="hljs-string">""</span>)
-    <span class="hljs-keyword">async</span> save(user: User) {
-        <span class="hljs-keyword">const</span> password = <span class="hljs-keyword">await</span> bcrypt.hash(user.password, <span class="hljs-number">10</span>)
-        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"User"</span>).insert({ ...user, password, role: <span class="hljs-string">"User"</span> })
+    <span class="hljs-keyword">async</span> save(data: User) {
+        <span class="hljs-keyword">const</span> password = <span class="hljs-keyword">await</span> bcrypt.hash(data.password, <span class="hljs-number">10</span>)
+        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"User"</span>).insert({ ...data, password, role: <span class="hljs-string">"User"</span> })
     }
 
     <span class="hljs-comment">// GET /api/v1/users?offset=&lt;number&gt;&amp;limit=&lt;number&gt;</span>
@@ -144,9 +143,9 @@
 
     <span class="hljs-comment">// PUT /api/v1/users/:id</span>
     <span class="hljs-meta">@route</span>.put(<span class="hljs-string">":id"</span>)
-    <span class="hljs-keyword">async</span> modify(id: <span class="hljs-built_in">number</span>, user: User) {
-        <span class="hljs-keyword">const</span> password = <span class="hljs-keyword">await</span> bcrypt.hash(user.password, <span class="hljs-number">10</span>)
-        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"User"</span>).update({...user, password}).where({ id })
+    <span class="hljs-keyword">async</span> modify(id: <span class="hljs-built_in">number</span>, data: User) {
+        <span class="hljs-keyword">const</span> password = <span class="hljs-keyword">await</span> bcrypt.hash(data.password, <span class="hljs-number">10</span>)
+        <span class="hljs-keyword">return</span> db(<span class="hljs-string">"User"</span>).update({...data, password}).where({ id })
     }
 
     <span class="hljs-comment">// DELETE /api/v1/users/:id</span>
@@ -162,13 +161,47 @@
 <p>Open Visual Studio Code integrated terminal and execute commands below:</p>
 <pre><code class="hljs css language-bash">$ http POST :8000/api/v1/users email=john.doe@gmail.com password=123456 name=<span class="hljs-string">"John Doe"</span> role=<span class="hljs-string">"User"</span>
 </code></pre>
-<p>Above command will add a new user to the database. Code above will return the id of the new added user. Use the returned</p>
-<pre><code class="hljs css language-bash">
+<p>Above command will add a new user to the database. Code above will return the id of the new added user. Use the returned id to test the other routes.</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># get user by id</span>
+$ http :8000/api/v1/users/1
 
-<span class="hljs-comment">## Debugging</span>
+<span class="hljs-comment"># get all users</span>
+$ http <span class="hljs-string">":8000/api/v1/users?offset=0&amp;limit=50"</span>
 
+<span class="hljs-comment"># modify user by id</span>
+$ http PUT :8000/api/1 name=<span class="hljs-string">"John Unknown Doe"</span> email=john.doe@gmail.com password=123456 role=<span class="hljs-string">"User"</span>
+
+<span class="hljs-comment"># delete user by id</span>
+$ http DELETE :8000/api/v1/users/1
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/tutorials/basic-sql/create-migration"><span class="arrow-prev">← </span><span>Creating DB Migration</span></a><a class="docs-next button" href="/docs/tutorials/basic-sql/securing-restful-api"><span>Securing Restful API</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#configure-knex">Configure Knex</a></li><li><a href="#create-controller-for-restful-api">Create Controller for Restful API</a><ul class="toc-headings"><li><a href="#todos-controller">Todos Controller</a></li><li><a href="#user-controller">User Controller</a></li></ul></li><li><a href="#testing">Testing</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<p>Try experimenting using above commands to remove and modify users.
+Below is commands to test todo routes</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># add new todo</span>
+$ http POST :8000/api/v1/todos todo=<span class="hljs-string">"Buy some milks"</span> userId=2
+
+<span class="hljs-comment"># get todo by id</span>
+$ http :8000/api/v1/todos/1
+
+<span class="hljs-comment"># get all todos</span>
+$ http <span class="hljs-string">":8000/api/v1/todos?offset=0&amp;limit=50"</span>
+
+<span class="hljs-comment"># modify todo by id</span>
+$ http PUT :8000/api/1 todo=<span class="hljs-string">"Buy some papers"</span> userId=2
+
+<span class="hljs-comment"># delete todo by id</span>
+$ http DELETE :8000/api/v1/todos/1
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="testing-validation"></a><a href="#testing-validation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing Validation</h2>
+<p>We tested our API using good user input, lets test our application using bad user data below</p>
+<pre><code class="hljs css language-bash"><span class="hljs-comment"># test add user without email (email is required)</span>
+$ http POST :8000/api/v1/users password=123456 name=<span class="hljs-string">"John Doe"</span> role=<span class="hljs-string">"User"</span>
+<span class="hljs-comment"># test using invalid email</span>
+$ http POST :8000/api/v1/users email=<span class="hljs-string">"invalid email"</span> password=123456 name=<span class="hljs-string">"John Doe"</span> role=<span class="hljs-string">"User"</span>
+<span class="hljs-comment"># test using invalid data type</span>
+$ http POST :8000/api/v1/todos todo=<span class="hljs-string">"Buy some milks"</span> userId=<span class="hljs-string">"invalid user"</span> 
+</code></pre>
+<p>Above command will return validation error with http status 422 and conversion error 400.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/tutorials/basic-sql/create-migration"><span class="arrow-prev">← </span><span>Create DB Migration</span></a><a class="docs-next button" href="/docs/tutorials/basic-sql/debugging"><span>Debugging</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#configure-knex">Configure Knex</a></li><li><a href="#create-controller-for-restful-api">Create Controller for Restful API</a><ul class="toc-headings"><li><a href="#todos-controller">Todos Controller</a></li><li><a href="#user-controller">User Controller</a></li></ul></li><li><a href="#testing">Testing</a></li><li><a href="#testing-validation">Testing Validation</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
