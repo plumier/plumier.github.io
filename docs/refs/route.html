@@ -138,6 +138,9 @@ PUT  <span class="hljs-meta-keyword">/animal/</span>modify?id=<span class="hljs-
 <pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /beast/:id
 <span class="hljs-builtin-name">GET</span> /beast/list?<span class="hljs-attribute">last</span>=&lt;number&gt;&amp;limit=&lt;number&gt;
 </code></pre>
+<blockquote>
+<p>Route by directory convention will kept intact in absolute route override, due to directory convention usually used for API versioning.</p>
+</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="relative-route-override"></a><a href="#relative-route-override" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Relative Route Override</h2>
 <p>Relative route override will only rename the name of the action and keep using controller name.</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
@@ -160,7 +163,7 @@ PUT  <span class="hljs-meta-keyword">/animal/</span>modify?id=<span class="hljs-
 <pre><code class="hljs"><span class="hljs-builtin-name">GET</span> /animal?<span class="hljs-attribute">id</span>=&lt;number&gt;
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="example-restful-api"></a><a href="#example-restful-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example Restful Api</h2>
-<p>Sum up of above rule you can create Restful API route like below:</p>
+<p>Sum up of above rules you can construct clean Restful API routes like below:</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
     <span class="hljs-meta">@route</span>.get(<span class="hljs-string">":id"</span>)
     <span class="hljs-keyword">get</span>(id:<span class="hljs-built_in">number</span>){}
@@ -196,8 +199,7 @@ DELETE /<span class="hljs-keyword">animal</span>/:id
 <pre><code class="hljs css language-typescript"><span class="hljs-meta">@route</span>.root(<span class="hljs-string">"/beast/:beastId"</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AnimalController {
     <span class="hljs-keyword">get</span>(beastId:<span class="hljs-built_in">number</span>, id:<span class="hljs-built_in">number</span>){}
-    <span class="hljs-comment">//absolute route doesn't need to provided backing parameter</span>
-    <span class="hljs-comment">//fpr beastId</span>
+    <span class="hljs-comment">//absolute route doesn't need to provided backing parameter for beastId</span>
     <span class="hljs-meta">@route</span>.get(<span class="hljs-string">"/list"</span>)
     list(last:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>)
 }
@@ -244,7 +246,23 @@ DELETE category/<span class="hljs-symbol">:type/animal/</span><span class="hljs-
 <span class="hljs-builtin-name">GET</span> /about-us
 <span class="hljs-builtin-name">GET</span> /cart
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/facility"><span class="arrow-prev">← </span><span>Facility</span></a><a class="docs-next button" href="/docs/refs/parameter-binding"><span>Parameter Binding</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#name-convention">Name Convention</a></li><li><a href="#directory-convention">Directory Convention</a></li><li><a href="#http-verb-override">Http Verb Override</a></li><li><a href="#absolute-route-override">Absolute Route Override</a></li><li><a href="#relative-route-override">Relative Route Override</a></li><li><a href="#ignore-action-name">Ignore Action Name</a></li><li><a href="#example-restful-api">Example Restful Api</a></li><li><a href="#root-route">Root Route</a></li><li><a href="#parameterized-root-route">Parameterized Root Route</a></li><li><a href="#example-nested-restful-api">Example Nested Restful API</a></li><li><a href="#multiple-route-decorator">Multiple Route Decorator</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<h2><a class="anchor" aria-hidden="true" id="multiple-root-route"></a><a href="#multiple-root-route" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Multiple Root Route</h2>
+<p>Multiple root routes can also be applied into a controller and resulting create multiple routes for each methods.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-meta">@route</span>.root(<span class="hljs-string">"/home"</span>)
+<span class="hljs-meta">@route</span>.root(<span class="hljs-string">"/dashboard"</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> HomeController {
+    index(id:<span class="hljs-built_in">number</span>){
+        <span class="hljs-keyword">return</span> response.file(<span class="hljs-string">"&lt;file path&gt;"</span>)
+    }
+}
+</code></pre>
+<pre><code class="hljs"><span class="hljs-keyword">GET</span> /home/<span class="hljs-keyword">index</span>
+<span class="hljs-keyword">GET</span> /dashboard/<span class="hljs-keyword">index</span>
+</code></pre>
+<blockquote>
+<p>Absolute route when combined with multiple root route will cause conflict, consider to avoid them.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/facility"><span class="arrow-prev">← </span><span>Facility</span></a><a class="docs-next button" href="/docs/refs/parameter-binding"><span>Parameter Binding</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#name-convention">Name Convention</a></li><li><a href="#directory-convention">Directory Convention</a></li><li><a href="#http-verb-override">Http Verb Override</a></li><li><a href="#absolute-route-override">Absolute Route Override</a></li><li><a href="#relative-route-override">Relative Route Override</a></li><li><a href="#ignore-action-name">Ignore Action Name</a></li><li><a href="#example-restful-api">Example Restful Api</a></li><li><a href="#root-route">Root Route</a></li><li><a href="#parameterized-root-route">Parameterized Root Route</a></li><li><a href="#example-nested-restful-api">Example Nested Restful API</a></li><li><a href="#multiple-route-decorator">Multiple Route Decorator</a></li><li><a href="#multiple-root-route">Multiple Root Route</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
