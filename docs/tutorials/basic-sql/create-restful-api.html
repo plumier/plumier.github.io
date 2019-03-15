@@ -157,7 +157,28 @@
     }
 }
 </code></pre>
-<p>Above controller look the same as the previous todos controller, except we add logic to hash user password before saved to database.</p>
+<p>Above controller look the same as the previous todos controller, except we add logic to hash user password before saved to database. Save both file and check Visual Studio Code integrated terminal where you execute the start script, If no compile error it will print messages below</p>
+<pre><code class="hljs css language-bash">[INFO] 14:52:01 Restarting: /Users/ktutnik/Documents/todo-sql-backend/src/controller/auth-controller.ts has been modified
+Using ts-node version 8.0.2, typescript version 3.3.3333
+Debugger listening on ws://127.0.0.1:9229/51d0e0f9-7589-4376-bb07-f0cde4a0bea4
+For <span class="hljs-built_in">help</span>, see: https://nodejs.org/en/docs/inspector
+
+Route Analysis Report
+ 1. TodosController.save(data, user)    -&gt; POST   /api/v1/todos
+ 2. TodosController.list(offset, <span class="hljs-built_in">limit</span>) -&gt; GET    /api/v1/todos
+ 3. TodosController.get(id)             -&gt; GET    /api/v1/todos/:id
+ 4. TodosController.modify(id, data)    -&gt; PUT    /api/v1/todos/:id
+ 5. TodosController.delete(id)          -&gt; DELETE /api/v1/todos/:id
+ 6. UsersController.save(data)          -&gt; POST   /api/v1/users
+ 7. UsersController.list(offset, <span class="hljs-built_in">limit</span>) -&gt; GET    /api/v1/users
+ 8. UsersController.get(id)             -&gt; GET    /api/v1/users/:id
+ 9. UsersController.modify(id, data)    -&gt; PUT    /api/v1/users/:id
+10. UsersController.delete(id)          -&gt; DELETE /api/v1/users/:id
+11. HomeController.index()              -&gt; GET    /
+
+Server running http://localhost:8000/
+</code></pre>
+<p>Above message showing that Plumier generates 11 routes and 10 of them is the API we created using two controllers above.</p>
 <h2><a class="anchor" aria-hidden="true" id="testing"></a><a href="#testing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Testing</h2>
 <p>Our todo restful api backend is ready for testing, we will use <a href="https://httpie.org/#installation">HTTPie</a> to test from command line.</p>
 <p>Open Visual Studio Code integrated terminal and execute commands below:</p>
