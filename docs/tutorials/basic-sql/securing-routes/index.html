@@ -89,33 +89,25 @@
 }
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="authorize-todos-controller"></a><a href="#authorize-todos-controller" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Authorize Todos Controller</h2>
-<p>From specification, default authorization for <code>TodosController</code> is for authenticated user its mean we don't need to add extra authorization except for <code>PUT</code> and <code>DELETE</code> which authorized for Admin and Owner. Plumier doesn't provided handy authorization for such complex authorization but we can create custom authorization decorator using middleware.</p>
+<p>From specification, default authorization for <code>TodosController</code> is for authenticated user its mean we don't need to add extra authorization except for <code>PUT</code> and <code>DELETE</code> which authorized for Admin and Owner. We will create custom authorization decorator .</p>
 <h3><a class="anchor" aria-hidden="true" id="create-custom-authorization-decorator"></a><a href="#create-custom-authorization-decorator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create Custom Authorization Decorator</h3>
 <p>Navigate to <code>todo-controller.ts</code> file and add the following code before <code>TodosController</code> declaration.</p>
-<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { HttpStatusError, middleware, route } <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { authorize } <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
 
 <span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/db"</span>
-<span class="hljs-keyword">import</span> { LoginUser, Todo } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/domain"</span>
+<span class="hljs-keyword">import</span> { Todo } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/domain"</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ownerOrAdmin</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> middleware.use({
-        execute: <span class="hljs-keyword">async</span> invocation =&gt; {
-            <span class="hljs-keyword">const</span> { state, parameters } = invocation.context
-            <span class="hljs-keyword">const</span> user: LoginUser = state.user;
-            <span class="hljs-comment">//parameters is requested method parameter values</span>
-            <span class="hljs-keyword">const</span> id: <span class="hljs-built_in">number</span> = parameters![<span class="hljs-number">0</span>];
-            <span class="hljs-keyword">const</span> todo: Todo = <span class="hljs-keyword">await</span> db(<span class="hljs-string">"Todo"</span>).where({ id }).first()
-            <span class="hljs-keyword">if</span> (user.role === <span class="hljs-string">"Admin"</span> || todo &amp;&amp; todo.userId === user.userId)
-                <span class="hljs-keyword">return</span> invocation.proceed()
-            <span class="hljs-keyword">else</span>
-                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> HttpStatusError(<span class="hljs-number">401</span>, <span class="hljs-string">"Unauthorized"</span>)
-        }
+    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-keyword">async</span> info =&gt; {
+        <span class="hljs-keyword">const</span> {role, parameters, user} = info;
+        <span class="hljs-keyword">const</span> todo: Todo = <span class="hljs-keyword">await</span> db(<span class="hljs-string">"Todo"</span>).where({ id: parameters[<span class="hljs-number">0</span>] }).first()
+        <span class="hljs-keyword">return</span> role.some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"Admin"</span>) || todo &amp;&amp; todo.userId === user.userId
     })
 }
 </code></pre>
-<p>Middleware above is specific to Todo data so we put it in the same file with the todos controller. It returns <code>middleware.use</code> so it can be applied declaratively as decorator.</p>
-<p>The logic of the middleware is quite simple, we query the database based on provided <code>id</code> and check if current user role is <code>Admin</code> or the requested todo owner match with current login user id, if not match then throw <code>HttpStatusError</code>.</p>
-<p>Note that this middleware uses <code>parameters[0]</code> as <code>id</code> so basically this middleware only can be applied to a method with signature <code>method(id:number, ...)</code> like <code>modify(id, data)</code> and <code>delete(id)</code></p>
+<p>Code above is specific to Todo data so we put it in the same file with the todos controller. It uses <code>authorize.custom</code> so it can be applied declaratively as decorator. When applied into class, method or parameter <code>authorize.custom</code> will be evaluated before process touching controller, if it return true request is allowed otherwise rejected with http status code 401 or 403.</p>
+<p>The logic is quite simple, we query the database based on provided <code>id</code> and check if current user role is <code>Admin</code> or the requested todo owner match with current login user id.</p>
+<p>Note that it uses <code>parameters[0]</code> as <code>id</code> so basically it only can be applied to a method with signature <code>method(id:number, ...)</code> like <code>modify(id, data)</code> and <code>delete(id)</code></p>
 <h3><a class="anchor" aria-hidden="true" id="apply-authorization-decorator"></a><a href="#apply-authorization-decorator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Apply Authorization Decorator</h3>
 <p>Now we ready to apply our custom authorization to the <code>PUT</code> and <code>DELETE</code> handler by putting <code>@ownerOrAdmin()</code> above the <code>delete</code> and <code>modify</code> method like below</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TodosController {
@@ -140,31 +132,16 @@
 <p>Users controller mostly have the same authorization with todos controller but we can't apply our custom authorization decorator created for todos controller into users controller because it pointed to different database table. We need to create another custom authorization decorator.</p>
 <h3><a class="anchor" aria-hidden="true" id="create-custom-authorization-decorator-1"></a><a href="#create-custom-authorization-decorator-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create Custom Authorization Decorator</h3>
 <p>Navigate to <code>users-controller.ts</code> file and add the following code before <code>UsersController</code> declaration.</p>
-<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { HttpStatusError, middleware } <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
-
-<span class="hljs-keyword">import</span> { db } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/db"</span>
-<span class="hljs-keyword">import</span> { LoginUser, User } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/domain"</span>
-
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { authorize } <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ownerOrAdmin</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> middleware.use({
-        execute: <span class="hljs-keyword">async</span> invocation =&gt; {
-            <span class="hljs-keyword">const</span> { state, parameters } = invocation.context
-            <span class="hljs-comment">//if no user then proceed. </span>
-            <span class="hljs-comment">//this condition applied to public route POST /api/v1/users</span>
-            <span class="hljs-keyword">if</span>(!state.user) <span class="hljs-keyword">return</span> invocation.proceed()
-            <span class="hljs-keyword">const</span> loginUser: LoginUser = state.user;
-            <span class="hljs-keyword">const</span> id: <span class="hljs-built_in">number</span> = parameters![<span class="hljs-number">0</span>];
-            <span class="hljs-keyword">const</span> reqUser: User = <span class="hljs-keyword">await</span> db(<span class="hljs-string">"User"</span>).where({ id }).first()
-            <span class="hljs-keyword">if</span> (loginUser.role === <span class="hljs-string">"Admin"</span> || reqUser &amp;&amp; reqUser.id === loginUser.userId)
-                <span class="hljs-keyword">return</span> invocation.proceed()
-            <span class="hljs-keyword">else</span>
-                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> HttpStatusError(<span class="hljs-number">401</span>, <span class="hljs-string">"Unauthorized"</span>)
-        }
+    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-keyword">async</span> info =&gt; {
+        <span class="hljs-keyword">const</span> { role, user, parameters } = info
+        <span class="hljs-keyword">return</span> role.some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"Admin"</span>) || parameters[<span class="hljs-number">0</span>] === user.userId
     })
 }
 </code></pre>
-<p>Middleware above relatively has the same logic with the previous one, except it check to existence of <code>user</code>. This logic will be used when we access <code>POST /api/v1/users</code> which will be set to accessible for public.</p>
+<p>Code above is simpler than previous implementation, it doesn't do some check to the database but only test if the first parameter of the method is the same with the login user or the current role is <code>Admin</code></p>
 <h3><a class="anchor" aria-hidden="true" id="apply-authorization-decorator-1"></a><a href="#apply-authorization-decorator-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Apply Authorization Decorator</h3>
 <p>Next we ready to apply our custom authorization decorator into users controller. Go to <code>UserController</code> file and do modification like below</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> UsersController {
