@@ -131,7 +131,32 @@
     }
 }
 </code></pre>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/extends/custom-validator"><span class="arrow-prev">← </span><span>Custom Validator</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#callback-signature">Callback Signature</a></li><li><a href="#example">Example</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+<h3><a class="anchor" aria-hidden="true" id="separate-decorator-and-implementation"></a><a href="#separate-decorator-and-implementation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Separate Decorator and Implementation</h3>
+<p>Authorization decorator that is applied for parameter authorization, sometime need to be free from server specific dependency because will be shared with UI. To do so Plumier provided separation between logic and decorator by providing <code>ID</code> of the validator logic inside configuration, example:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { authorize } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plumier/core"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isAdminOrOwner</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-string">"auth:isAdminOrOwner"</span>) 
+}
+</code></pre>
+<p>Define logic of the validation by providing key-value pair of authorize id and authorize logic like below</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-comment">//here is separate logic (can be place in different file)</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> authorizeStore:AuthorizeStore = {
+    <span class="hljs-string">"auth:isAdminOrOwner"</span>: <span class="hljs-keyword">async</span> (info, position) =&gt; {
+        <span class="hljs-keyword">const</span> {role, user, parameters} = info
+        <span class="hljs-keyword">const</span> id = parameters[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">return</span> role.some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"Admin"</span>) || user.id === id
+    }
+}
+</code></pre>
+<p>To use it, register the authorize logic on the configuration, can be from <code>JwtAuthFacility</code> or from <code>Plumier.set({authorizer: {}})</code></p>
+<pre><code class="hljs css language-typescript">
+<span class="hljs-keyword">const</span> plumier = <span class="hljs-keyword">new</span> Plumier()
+plumier.set(<span class="hljs-keyword">new</span> JwtAuthFacility({ authorizer: authorizeStore }))
+<span class="hljs-comment">//or</span>
+plumier.set({ authorizer: authorizeStore })
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/extends/custom-validator"><span class="arrow-prev">← </span><span>Custom Validator</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#callback-signature">Callback Signature</a></li><li><a href="#example">Example</a><ul class="toc-headings"><li><a href="#separate-decorator-and-implementation">Separate Decorator and Implementation</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
