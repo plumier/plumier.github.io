@@ -192,10 +192,13 @@ $ http :8000/api/v1/users/1
 $ http <span class="hljs-string">":8000/api/v1/users?offset=0&amp;limit=50"</span>
 
 <span class="hljs-comment"># modify user by id</span>
-$ http PUT :8000/api/1 name=<span class="hljs-string">"John Unknown Doe"</span> email=john.doe@gmail.com password=123456 role=<span class="hljs-string">"Admin"</span>
+$ http PUT :8000/api/users/1 name=<span class="hljs-string">"John Unknown Doe"</span> email=john.doe@gmail.com password=123456 role=<span class="hljs-string">"Admin"</span>
 
-<span class="hljs-comment"># delete user by id</span>
-$ http DELETE :8000/api/v1/users/1
+<span class="hljs-comment"># create one more user to delete </span>
+$ http POST :8000/api/v1/users email=john.doe@gmail.com password=123456 name=<span class="hljs-string">"John Doe"</span>
+
+<span class="hljs-comment"># delete user by id, use id from result of above command</span>
+$ http DELETE :8000/api/v1/users/&lt;last added id&gt;
 </code></pre>
 <p>Try experimenting using above commands to remove and modify users.
 Below is commands to test todo routes</p>
@@ -209,7 +212,7 @@ $ http :8000/api/v1/todos/1
 $ http <span class="hljs-string">":8000/api/v1/todos?offset=0&amp;limit=50"</span>
 
 <span class="hljs-comment"># modify todo by id</span>
-$ http PUT :8000/api/1 todo=<span class="hljs-string">"Buy some papers"</span> userId=2
+$ http PUT :8000/api/todos/1 todo=<span class="hljs-string">"Buy some papers"</span> userId=2
 
 <span class="hljs-comment"># delete todo by id</span>
 $ http DELETE :8000/api/v1/todos/1
