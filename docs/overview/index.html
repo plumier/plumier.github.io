@@ -70,7 +70,7 @@
 <p>Above snippet will host a simple REST API service <code>GET /hello/index</code> and listen to port 8000. It uses simple routing by convention which by default will generate controller method into <code>GET</code> route. When requested using http client it simply returned JSON <code>{ &quot;message&quot;, &quot;Hello world!&quot; }</code>.
 Example above showing that Controller manually registered on <code>WebApiFacility</code>, by default Plumier will look into <code>controller/</code> directory and traverse through all classes that is named end with <code>Controller</code>.</p>
 <blockquote>
-<p>Its recommended to start Plumier project using <code>plumier-starter</code> which provided some ready to use starter with some best practices.</p>
+<p>Its recommended to start Plumier project using <code>plumier-starter</code> which provided some ready to use starter with some best practices. Go to <a href="/tutorials/basic-sql/get-started">Plumier Basic Tutorial</a> for more information</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="routing"></a><a href="#routing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Routing</h2>
 <p>Plumier provided flexible routing that combine between decorator, metadata reflection and directory structure to generate routes.</p>
