@@ -106,8 +106,8 @@ This is the eight part of 10 steps tutorial on creating basic SQL restful API. C
 <span class="hljs-keyword">import</span> { Todo } <span class="hljs-keyword">from</span> <span class="hljs-string">"../../../model/domain"</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ownerOrAdmin</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-keyword">async</span> ({role, parameters, user}) =&gt; {
-        <span class="hljs-keyword">const</span> todo: Todo = <span class="hljs-keyword">await</span> db(<span class="hljs-string">"Todo"</span>).where({ id: parameters[<span class="hljs-number">0</span>] }).first()
+    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-keyword">async</span> ({role, ctx, user}) =&gt; {
+        <span class="hljs-keyword">const</span> todo: Todo = <span class="hljs-keyword">await</span> db(<span class="hljs-string">"Todo"</span>).where({ id: ctx.parameters[<span class="hljs-number">0</span>] }).first()
         <span class="hljs-keyword">return</span> role.some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"Admin"</span>) || todo &amp;&amp; todo.userId === user.userId
     }, <span class="hljs-string">"Admin|Owner"</span>)
 }
@@ -143,8 +143,8 @@ This is the eight part of 10 steps tutorial on creating basic SQL restful API. C
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { authorize } <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ownerOrAdmin</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-keyword">async</span> ({ role, user, parameters }) =&gt; {
-        <span class="hljs-keyword">return</span> role.some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"Admin"</span>) || parameters[<span class="hljs-number">0</span>] === user.userId
+    <span class="hljs-keyword">return</span> authorize.custom(<span class="hljs-keyword">async</span> ({ role, user, ctx }) =&gt; {
+        <span class="hljs-keyword">return</span> role.some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"Admin"</span>) || ctx.parameters[<span class="hljs-number">0</span>] === user.userId
     }, <span class="hljs-string">"Admin|Owner"</span>)
 }
 </code></pre>

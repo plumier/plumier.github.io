@@ -157,18 +157,6 @@ save(data: Todo, <span class="hljs-meta">@bind</span>.user() user: LoginUser) {
 }
 </code></pre>
 <p>Above code showing that we doing decorator binding <code>@bind.user()</code> to the <code>user</code> parameter, using this snippet <code>user</code> parameter will automatically populated with current login domain during request.</p>
-<p><code>userId</code> property now should be optional to prevent required validation error thrown by Plumier system. Navigate to <code>domain.ts</code> and modify the <code>Todo</code> domain like below</p>
-<pre><code class="hljs css language-typescript"><span class="hljs-meta">@domain</span>()
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Todo <span class="hljs-keyword">extends</span> Domain {
-    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
-        <span class="hljs-keyword">public</span> todo: <span class="hljs-built_in">string</span>,
-        <span class="hljs-meta">@val</span>.optional() <span class="hljs-comment">// &lt;--- add this line</span>
-        <span class="hljs-keyword">public</span> userId:<span class="hljs-built_in">number</span>,
-        <span class="hljs-meta">@val</span>.optional()
-        <span class="hljs-keyword">public</span> completed: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>
-    </span>) { <span class="hljs-keyword">super</span>() }
-}
-</code></pre>
 <p>Test above modification by executing command below in Visual Studio Code integrated terminal</p>
 <pre><code class="hljs css language-bash">$ http POST :8000/api/v1/todos Authorization:<span class="hljs-string">"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJBZG1pbiIsImlhdCI6MTU1MjE4OTczNH0.7kzqgsi1ywRzGCQTTn9vYKGS5sYvPGlqF78YUcUbmMY"</span> todo=<span class="hljs-string">"Buy some other milks"</span>
 </code></pre>

@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ActionResult · Plumier</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="`ActionResult` is a special class that used to create an Http Response. `ActionResult` has ability to modify Http Response which make it possible to make a custom response such as return an html, file, file download etc. "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ActionResult · Plumier"/><meta property="og:type" content="website"/><meta property="og:url" content="https://plumierjs.com/"/><meta property="og:description" content="`ActionResult` is a special class that used to create an Http Response. `ActionResult` has ability to modify Http Response which make it possible to make a custom response such as return an html, file, file download etc. "/><meta property="og:image" content="https://plumierjs.com/img/docusaurus.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://plumierjs.com/img/docusaurus.png"/><link rel="shortcut icon" href="/img/plumier.png"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/plumier.svg" alt="Plumier"/><h2 class="headerTitleWithLogo">Plumier</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/overview" target="_self">Docs</a></li><li class=""><a href="/docs/tutorials/basic-sql/get-started" target="_self">Tutorials</a></li><li class=""><a href="https://github.com/plumier/plumier" target="_self">GitHub</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>References</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Overview<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/motivation">Motivation</a></li><li class="navListItem"><a class="navItem" href="/docs/fundamentals">Fundamentals</a></li><li class="navListItem"><a class="navItem" href="/docs/extend">Extending Plumier</a></li><li class="navListItem"><a class="navItem" href="/docs/project-template">Project Template</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">References<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/refs/entry-point">Application Startup</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/controller">Controller</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/route">Route Cheat Sheet</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/parameter-binding">Parameter Binding</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/refs/action-result">ActionResult</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/converters">Converters</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/validation">Validation</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/authorization">Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/middleware">Middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/facility">Facility</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/error-handling">Error Handling</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/serve-static">Serve Static Files</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/file-upload">File Upload</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/mongoose-helper">Mongoose Helper</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/social-login">Social Login</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/controller-invoker">Controller Invoker</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/testing-tips">Testing Tips</a></li><li class="navListItem"><a class="navItem" href="/docs/refs/application-lifecycle">Application Lifecycle</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">Extend<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/extends/custom-parameter-binding">Custom Parameter Binding</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-validator">Custom Validator</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-authorization">Custom Authorization</a></li><li class="navListItem"><a class="navItem" href="/docs/extends/custom-dependency-resolver">Custom Dependency Resolver</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ActionResult</h1></header><article><div><span><p><code>ActionResult</code> is a special class that used to create an Http Response. <code>ActionResult</code> has ability to modify Http Response which make it possible to make a custom response such as return an html, file, file download etc.</p>
+<h2><a class="anchor" aria-hidden="true" id="signature"></a><a href="#signature" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Signature</h2>
+<p><code>ActionResult</code> signature has some similarities with the http response like below:</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> ActionResult {
+    <span class="hljs-keyword">static</span> fromContext(ctx: Context) : ActionResult
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> body?: <span class="hljs-built_in">any</span>, <span class="hljs-keyword">public</span> status?: <span class="hljs-built_in">number</span></span>)
+    setHeader(<span class="hljs-params">key: <span class="hljs-built_in">string</span>, value: <span class="hljs-built_in">string</span></span>) : ActionResult
+    setStatus(<span class="hljs-params">status: <span class="hljs-built_in">number</span></span>): ActionResult
+    execute(<span class="hljs-params">ctx: Context</span>): Promise&lt;void&gt; 
+}
+</code></pre>
+<ul>
+<li><code>fromContext</code> create <code>ActionResult</code> from Koa context</li>
+<li><code>setHeader</code> set header that will be used by Http Response</li>
+<li><code>setStatus</code> set Http Status that will be use by Http Response</li>
+<li><code>execute</code> internally called by Plumier to generate Koa context and render the response</li>
+</ul>
+<p><code>setHeader</code> and <code>setStatus</code> designed to be chainable, so it will be able to create <code>ActionResult</code> object like below</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ActionResult({ message: <span class="hljs-string">"The body"</span> })
+    .setStatus(<span class="hljs-number">400</span>)
+    .setHeader(<span class="hljs-string">"key"</span>, <span class="hljs-string">"value"</span>)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="action-result-implementation"></a><a href="#action-result-implementation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Action Result Implementation</h2>
+<p>Currently now Plumier has three types of <code>ActionResult</code> implementation:</p>
+<ul>
+<li><code>ActionResult</code> by default will returned JSON response</li>
+<li><code>RedirectActionResult</code> used to redirect request to specific url, internally it calls Koa <code>Context.redirect</code></li>
+<li><code>FileActionResult</code> returned a file response based on provided file path. This class only enable when <code>@plumier/serve-static</code> installed.</li>
+</ul>
+<p>A shorthand namespace available to access all of above implementation called <code>response</code></p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> {route, response} <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
+
+<span class="hljs-keyword">class</span> AnimalController {
+    <span class="hljs-meta">@route</span>.get()
+    index(){
+        <span class="hljs-keyword">return</span> response.redirect(&lt;url&gt;)
+    }
+}
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="custom-action-result"></a><a href="#custom-action-result" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Action Result</h2>
+<p>It is possible to extends the ability of <code>ActionResult</code> to modify the Http response to return custom http response. The main logic is on the <code>execute</code> method.</p>
+<p>For example the implementation of <code>FileActionResult</code> is quite simple as below</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> send <span class="hljs-keyword">from</span> <span class="hljs-string">"koa-send"</span>
+<span class="hljs-keyword">import</span> { extname } <span class="hljs-keyword">from</span> <span class="hljs-string">"path"</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> FileActionResult <span class="hljs-keyword">extends</span> ActionResult {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">path: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">super</span>(path)
+    }
+
+    <span class="hljs-keyword">async</span> execute(ctx: Context) {
+        <span class="hljs-keyword">await</span> <span class="hljs-keyword">super</span>.execute(ctx)
+        ctx.type = extname(<span class="hljs-keyword">this</span>.body)
+        <span class="hljs-keyword">await</span> send(ctx, <span class="hljs-keyword">this</span>.body)
+    }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/refs/parameter-binding"><span class="arrow-prev">← </span><span>Parameter Binding</span></a><a class="docs-next button" href="/docs/refs/converters"><span>Converters</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#signature">Signature</a></li><li><a href="#action-result-implementation">Action Result Implementation</a></li><li><a href="#custom-action-result">Custom Action Result</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: 'cc5032f20c325b27c07de03fe7078651',
+                indexName: 'plumierjs',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>
