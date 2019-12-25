@@ -59,11 +59,11 @@
 <p>In the other hands frameworks doesn't put robustness and secureness as priority because with its fancy separation you can create your own implementation of type conversion, validator or authorization on top of an existing library such as Joi and Passport.</p>
 <h2><a class="anchor" aria-hidden="true" id="what-about-express"></a><a href="#what-about-express" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What About Express?</h2>
 <p>I am a big fans of Express, I spent years developing API using Express. Good parts about Express is its simplicity, its easy to master Express only by reading the documentation or by spending a 10 minutes tutorial. Because its only consist of Routing and middleware.</p>
-<p>Bad things about Express is its getting harder when you get into the detail. By default express doesn't have a built-in type conversion validator and authorization functionalities. Thus you need to combine some npm packages, configure schema for joi validation and mongoose, setting this and that for authorization, at the end your code is so far from simple.</p>
+<p>Bad things about Express is its getting harder when you get into the detail. By default express doesn't have a built-in type conversion validator and authorization functionalities. Thus you need to combine some npm packages to do the detail things. You need to configure schema for joi validation and mongoose, setting this and that for authorization, at the end your code is so far from simple.</p>
 <h2><a class="anchor" aria-hidden="true" id="enter-plumier"></a><a href="#enter-plumier" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enter Plumier</h2>
-<p>Welcome to Plumier where robustness and secureness is mandatory and fanciness is optional. Unlike most TypeScript framework Plumier focus on how to make your development delightful and fast while keep simplest implementation robust and secure. Plumier doesn't force you to follow some design pattern or best practice. Plumier application is highly configurable make you able to layout your source code freely.</p>
+<p>Welcome to Plumier where robustness and secureness is mandatory and fanciness is optional. Unlike most TypeScript framework Plumier focus on how to make your development delightful and fast while keep simplest implementation robust and secure. Plumier doesn't force you to follow some design pattern or best practice, instead, Plumier application is highly configurable that make you able to layout your source code freely.</p>
 <h2><a class="anchor" aria-hidden="true" id="robust-and-secure"></a><a href="#robust-and-secure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Robust and Secure</h2>
-<p>Plumier provided some built-in functionalities that work in the background to make below trivial Plumier controller keep secure and robust.</p>
+<p>Plumier provided some built-in functionalities that work in the background to make the most trivial implementation keep secure and robust.</p>
 <pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> AnimalsController {
     <span class="hljs-meta">@route</span>.get()
     list(offset:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>) {
@@ -71,13 +71,70 @@
     }
 }
 </code></pre>
-<p>Above controller generate single endpoints <code>GET /animals/list?offset=0&amp;list=10</code>. Plumier uses a dedicated type introspection (reflection) library to make it able to extract TypeScript type annotation than translate those information into metadata and provide functionalities that working on the background.</p>
+<p>Above controller generate single endpoints <code>GET /animals/list?offset=0&amp;list=10</code>. Plumier uses a dedicated type introspection (reflection) library to make it able to extract TypeScript type annotation than translate it into metadata and provide functionalities that working on the background.</p>
 <ol>
 <li>It automatically bound <code>offset</code> and <code>limit</code> parameter with request query by name, no further configuration needed.</li>
-<li>It automatically convert the <code>offset</code> and <code>limit</code> value into number match with its data type. This function prevent bad user submitting bad value causing conversion error or even sql injection.</li>
+<li>It automatically convert the request query <code>offset</code> and <code>limit</code> value into appropriate parameter data type. This function prevent bad user submitting bad value causing conversion error or even sql injection.</li>
 <li>It taking care of query case insensitivity, <code>GET /animals/list?OFFSET=0&amp;LIMIT=10</code> will keep working. Note that query is case sensitive in most frameworks.</li>
 </ol>
-<p>Furthermore Plumier provided built-in decorator based <a href="refs/authorization">authorization</a> and <a href="refs/authorization#parameter-authorization">parameter authorization</a> to easily restrict access to your API endpoints.</p>
+<p>Furthermore Plumier provided built-in decorator based authorization to easily restrict access to your API endpoints.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">class</span> UsersController {
+
+    <span class="hljs-comment">// GET /users?offset&amp;limit</span>
+    <span class="hljs-comment">// only accessible by Admin</span>
+    <span class="hljs-meta">@authorize</span>.role(<span class="hljs-string">"Admin"</span>)
+    <span class="hljs-meta">@route</span>.get(<span class="hljs-string">""</span>)
+    list(offset:<span class="hljs-built_in">number</span>, limit:<span class="hljs-built_in">number</span>) { }
+
+    <span class="hljs-comment">// POST /users </span>
+    <span class="hljs-comment">// accessible by public</span>
+    <span class="hljs-meta">@authorize</span>.public()
+    <span class="hljs-meta">@route</span>.post(<span class="hljs-string">""</span>)
+    save(data:User){}
+}
+</code></pre>
+<p>Above code showing that some authorization decorator applied to the method to restrict access to each endpoint handled by controller's method.</p>
+<h2><a class="anchor" aria-hidden="true" id="useful-reflection-based-helpers"></a><a href="#useful-reflection-based-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Useful Reflection Based Helpers</h2>
+<p>Another benefit of using reflection library is Plumier able to provided an official <a href="https://mongoosejs.com/">Mongoose</a> helper to automatically generate mongoose schema from domain model.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { collection, model } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plumier/mongoose"</span>
+
+<span class="hljs-comment">// mark domain model as collection</span>
+<span class="hljs-meta">@collection</span>()
+<span class="hljs-keyword">class</span> User {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> email:<span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> dateOfBirth:<span class="hljs-built_in">Date</span>,
+        <span class="hljs-keyword">public</span> role: "Admin" | "User",
+        <span class="hljs-keyword">public</span> active:<span class="hljs-built_in">boolean</span>
+    </span>){}
+}
+
+<span class="hljs-comment">// model() function automatically generate Mongoose schema </span>
+<span class="hljs-comment">// based on User properties </span>
+<span class="hljs-keyword">const</span> UserModel = model(User)
+</code></pre>
+<p>Read more information about Mongoose helper <a href="refs/mongoose-helper">here</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="reduce-duplication"></a><a href="#reduce-duplication" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reduce Duplication</h2>
+<p>There is a best practice spread among static type programmers: <strong>Never use your domain model as DTO</strong>. Literally its a good advice because in a common framework using domain model as DTO can lead to some security issue, but this will ends up in another issue: bloated code and duplication.</p>
+<p>Plumier provided an advanced authorization functionalities which enables you to restrict setting some property of request body by providing <code>@authorize</code> decorator on the domain model.</p>
+<pre><code class="hljs css language-typescript"><span class="hljs-keyword">import</span> { authorize } <span class="hljs-keyword">from</span> <span class="hljs-string">"plumier"</span>
+<span class="hljs-keyword">import</span> { collection } <span class="hljs-keyword">from</span> <span class="hljs-string">"@plumier/mongoose"</span>
+
+<span class="hljs-meta">@collection</span>()
+<span class="hljs-keyword">class</span> User {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">
+        <span class="hljs-keyword">public</span> name:<span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> email:<span class="hljs-built_in">string</span>,
+        <span class="hljs-keyword">public</span> dateOfBirth:<span class="hljs-built_in">Date</span>,
+        <span class="hljs-comment">//restrict access only to Admin</span>
+        <span class="hljs-meta">@authorize</span>.role(<span class="hljs-string">"Admin"</span>) 
+        <span class="hljs-keyword">public</span> role: "Admin" | "User",
+        <span class="hljs-keyword">public</span> active:<span class="hljs-built_in">boolean</span>
+    </span>){}
+}
+</code></pre>
+<p>Using above code, only user with <code>Admin</code> role will be able to set the <code>role</code> property. Using this trick will cut a lot of bloated DTO classes and duplication.</p>
 <h2><a class="anchor" aria-hidden="true" id="lightweight"></a><a href="#lightweight" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Lightweight</h2>
 <p>Above all, with all those features above, Plumier is a lightweight framework.</p>
 <pre><code class="hljs"><span class="hljs-builtin-name">GET</span> method benchmark starting<span class="hljs-built_in">..</span>.
@@ -126,7 +183,7 @@ loopback     express      POST         2294.00     75.91
 <li><a href="https://github.com/plumier/tutorial-monorepo-social-login">Plumier - React - Monorepo - Social Login</a></li>
 <li><a href="https://github.com/plumier/tutorial-todo-monorepo-react-native">Plumier - React Native - Monorepo</a></li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/fundamentals"><span>Fundamentals</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-about-express">What About Express?</a></li><li><a href="#enter-plumier">Enter Plumier</a></li><li><a href="#robust-and-secure">Robust and Secure</a></li><li><a href="#lightweight">Lightweight</a></li><li><a href="#standard-packages">Standard Packages</a></li><li><a href="#tutorial">Tutorial</a></li><li><a href="#examples">Examples</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/fundamentals"><span>Fundamentals</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#what-about-express">What About Express?</a></li><li><a href="#enter-plumier">Enter Plumier</a></li><li><a href="#robust-and-secure">Robust and Secure</a></li><li><a href="#useful-reflection-based-helpers">Useful Reflection Based Helpers</a></li><li><a href="#reduce-duplication">Reduce Duplication</a></li><li><a href="#lightweight">Lightweight</a></li><li><a href="#standard-packages">Standard Packages</a></li><li><a href="#tutorial">Tutorial</a></li><li><a href="#examples">Examples</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="copyright">Copyright © 2019 Plumier</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
                 document.addEventListener('keyup', function(e) {
                   if (e.target !== document.body) {
                     return;
